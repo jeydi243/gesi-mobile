@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:login/authentication.dart';
-import 'package:login/home.dart';
-import 'package:login/models/user.dart';
+import 'package:gesi_mobile/authentication.dart';
+import 'package:gesi_mobile/home.dart';
+import 'package:gesi_mobile/models/user.dart';
+import 'package:dio/dio.dart';
 
-class UserController extends GetxController {
-  static UserController instance = Get.find();
+class AuthController extends GetxController {
+  static AuthController instance = Get.find();
   Rx<User> user = User.gt().obs;
   RxBool isLoggedIn = false.obs;
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+// or new Dio with a BaseOptions instance.
 
+  var options = BaseOptions(
+    baseUrl: 'http://localhost:3000/api',
+    connectTimeout: 5000,
+    receiveTimeout: 3000,
+  );
   @override
   void onReady() {
     super.onReady();
+    Dio dio = Dio(options);
     ever(user, _setInitialScreen);
   }
 
@@ -44,6 +52,7 @@ class UserController extends GetxController {
   void signOut() async {}
 
   void showLoading() {}
+
   _addUserToFirestore(String userId) {}
 
   _clearControllers() {

@@ -16,3 +16,4 @@ linter:
     prefer_const_literals_to_create_immutables: false
     non_constant_default_value: false
     prefer_const_constructors_in_immutables: false
+    unchecked_use_of_nullable_value: false

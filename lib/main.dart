@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:gesi_mobile/constantes/values.dart';
+import 'package:gesi_mobile/controllers/appController.dart';
+import 'package:gesi_mobile/controllers/authController.dart';
+import 'package:gesi_mobile/login.dart';
+import 'package:hive/hive.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:login/constantes/values.dart';
-import 'package:login/controllers/appController.dart';
-import 'package:login/controllers/authController.dart';
-import 'package:login/login.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+
   Get.put(AppController());
-  Get.put(UserController());
+  Get.put(AuthController());
 
   runApp(const GESI());
 }
@@ -23,7 +27,7 @@ class GESI extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: GesiTheme.of(context),
-      home: Login(),
+      home: gesi(),
     );
   }
 }

@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:math';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:login/constantes/values.dart';
+import 'package:gesi_mobile/constantes/values.dart';
 
 class Helper {
   static Widget divider() {

@@ -1,16 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:gesi_mobile/controllers/authController.dart';
 import 'package:get/get.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Login extends StatefulWidget {
-  Login({Key? key}) : super(key: key);
+class gesi extends StatefulWidget {
+  gesi({Key? key}) : super(key: key);
 
   @override
-  _LoginState createState() => _LoginState();
+  _gesiState createState() => _gesiState();
 }
 
-class _LoginState extends State<Login> {
+class _gesiState extends State<gesi> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  // final AuthController _authController = Get.find();
+  void connexion() {
+    final FormState? formState = _formKey.currentState;
+    bool iValidForm = formState!.validate();
+    print(iValidForm);
+    if (iValidForm) {
+      print("Form valid");
+      _formKey.currentState!.save();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Processing Data.')),
+      );
+    } else {
+      print("Form is invalid");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,87 +75,136 @@ class _LoginState extends State<Login> {
                   padding: const EdgeInsets.all(10),
                   height: Get.height * .50,
                   width: Get.width * .95,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: Text(
-                          "Looks like you dont have an account.\n Let's create a new account for you",
-                          style: GoogleFonts.k2d(
-                              fontSize: 16, color: Colors.white),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 20),
+                          child: Text(
+                            "Looks like you dont have an account.\n Let's create a new account for you",
+                            style: GoogleFonts.k2d(
+                                fontSize: 16, color: Colors.white),
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20),
-                        child: Form(
-                            child: Column(
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 5.0),
-                              child: TextFormField(
-                                cursorColor: Colors.amberAccent,
-                                decoration: const InputDecoration(
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                    isDense: true,
-                                    labelText: "Name",
-                                    hintText: "Name",
-                                    focusedBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                            width: 2, color: Colors.amber)),
-                                    focusColor: Colors.amberAccent),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 20),
+                          child: Form(
+                              child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 5.0),
+                                child: TextFormField(
+                                  // controller: _authController.email,
+                                  validator: (value) {
+                                    if (value == null ||
+                                        value.isEmpty ||
+                                        value == "") {
+                                      return 'Vous devez remplir le username';
+                                    }
+                                    if (value.length < 4) {
+                                      return 'Too short';
+                                    }
+                                    return null;
+                                  },
+                                  cursorColor: Color(0xFF40FFAF),
+                                  decoration: const InputDecoration(
+                                      fillColor: Colors.white,
+                                      filled: true,
+                                      isDense: true,
+                                      contentPadding: EdgeInsets.fromLTRB(5, 5,
+                                          5, 5), // control your hints text size
+                                      labelText: "Name",
+                                      hintText: "Name",
+                                      errorStyle: TextStyle(color: Colors.red),
+                                      focusedErrorBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              width: 2,
+                                              color: Color.fromRGBO(
+                                                  255, 7, 7, 1))),
+                                      errorBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              width: 2,
+                                              color: Color.fromRGBO(
+                                                  255, 7, 7, 1))),
+                                      focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              width: 2, color: Colors.amber)),
+                                      focusColor: Colors.amberAccent),
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 5.0),
-                              child: TextFormField(
-                                cursorColor: Colors.amberAccent,
-                                decoration: const InputDecoration(
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                    labelText: "Mot de passe",
-                                    hintText: "*********",
-                                    isDense: true,
-                                    focusedBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                            width: 2, color: Colors.amber)),
-                                    focusColor: Colors.amberAccent),
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 5.0),
+                                child: TextFormField(
+                                  // controller: _authController.password,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Vous devez remplir le mot de passe';
+                                    }
+                                    if (value.length < 4) {
+                                      return 'Too short';
+                                    }
+                                    return null;
+                                  },
+                                  cursorColor: Color(0xFF40FFAF),
+                                  decoration: const InputDecoration(
+                                      fillColor: Colors.white,
+                                      filled: true,
+                                      labelText: "Mot de passe",
+                                      hintText: "*********",
+                                      isDense: true,
+                                      errorStyle: TextStyle(color: Colors.red),
+                                      focusedErrorBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              width: 2,
+                                              color: Color.fromRGBO(
+                                                  255, 7, 7, 1))),
+                                      errorBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              width: 2,
+                                              color: Color.fromRGBO(
+                                                  255, 7, 7, 1))),
+                                      contentPadding:
+                                          EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                      focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(
+                                              width: 2, color: Colors.amber)),
+                                      focusColor: Colors.amberAccent),
+                                ),
                               ),
-                            ),
-                          ],
-                        )),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 55),
-                        child: Text(
-                          'By selecting Agree and Continue below, I agree to Terms of Service and Privacy Policy',
-                          style: Theme.of(context)
-                              .textTheme
-                              .button
-                              ?.copyWith(color: Colors.white),
+                            ],
+                          )),
                         ),
-                      ),
-                      MaterialButton(
-                        onPressed: () {},
-                        animationDuration: 900.milliseconds,
-                        height: 50,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        elevation: 0,
-                        minWidth: double.infinity,
-                        color: Color.fromRGBO(16, 185, 129, 1),
-                        child: Text(
-                          "Agree and Continue",
-                          style: Theme.of(context)
-                              .textTheme
-                              .button
-                              ?.copyWith(color: Colors.white),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 55),
+                          child: Text(
+                            'By selecting Agree and Continue below, I agree to Terms of Service and Privacy Policy',
+                            style: Theme.of(context)
+                                .textTheme
+                                .button
+                                ?.copyWith(color: Colors.white),
+                          ),
                         ),
-                      )
-                    ],
+                        MaterialButton(
+                          onPressed: connexion,
+                          animationDuration: 900.milliseconds,
+                          height: 50,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          elevation: 0,
+                          minWidth: double.infinity,
+                          color: Color.fromRGBO(16, 185, 129, 1),
+                          child: Text(
+                            "Agree and Continue",
+                            style: Theme.of(context)
+                                .textTheme
+                                .button
+                                ?.copyWith(color: Colors.white),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
