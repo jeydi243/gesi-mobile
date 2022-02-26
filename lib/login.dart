@@ -13,20 +13,24 @@ class gesi extends StatefulWidget {
 
 class _gesiState extends State<gesi> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  // final AuthController _authController = Get.find();
+  final AuthController _authController = Get.find();
+  TextEditingController username = TextEditingController(text: "dfdfdfdf");
+  TextEditingController password = TextEditingController(text: "dfdfdffff");
   void connexion() {
     final FormState? formState = _formKey.currentState;
     bool iValidForm = formState!.validate();
-    print(iValidForm);
     if (iValidForm) {
-      print("Form valid");
       _formKey.currentState!.save();
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Processing Data.')),
-      );
+      _authController.signIn();
+
     } else {
       print("Form is invalid");
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -90,13 +94,14 @@ class _gesiState extends State<gesi> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 20),
-                          child: Form(
-                              child: Column(
+                          child: Column(
                             children: [
                               Padding(
                                 padding: EdgeInsets.symmetric(vertical: 5.0),
                                 child: TextFormField(
                                   // controller: _authController.email,
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
                                   validator: (value) {
                                     if (value == null ||
                                         value.isEmpty ||
@@ -117,7 +122,8 @@ class _gesiState extends State<gesi> {
                                           5, 5), // control your hints text size
                                       labelText: "Name",
                                       hintText: "Name",
-                                      errorStyle: TextStyle(color: Colors.red),
+                                      errorStyle: TextStyle(
+                                          color: Colors.red, fontSize: 11),
                                       focusedErrorBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                               width: 2,
@@ -137,7 +143,9 @@ class _gesiState extends State<gesi> {
                               Padding(
                                 padding: EdgeInsets.symmetric(vertical: 5.0),
                                 child: TextFormField(
-                                  // controller: _authController.password,
+                                  controller: _authController.password,
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
                                       return 'Vous devez remplir le mot de passe';
@@ -154,7 +162,8 @@ class _gesiState extends State<gesi> {
                                       labelText: "Mot de passe",
                                       hintText: "*********",
                                       isDense: true,
-                                      errorStyle: TextStyle(color: Colors.red),
+                                      errorStyle: TextStyle(
+                                          color: Colors.red, fontSize: 11),
                                       focusedErrorBorder: UnderlineInputBorder(
                                           borderSide: BorderSide(
                                               width: 2,
@@ -174,10 +183,10 @@ class _gesiState extends State<gesi> {
                                 ),
                               ),
                             ],
-                          )),
+                          ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(bottom: 55),
+                          padding: const EdgeInsets.only(bottom: 35),
                           child: Text(
                             'By selecting Agree and Continue below, I agree to Terms of Service and Privacy Policy',
                             style: Theme.of(context)

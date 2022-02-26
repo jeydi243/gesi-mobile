@@ -157,7 +157,7 @@ class Helper {
         barBlur: barBlur,
         overlayBlur: barBlur,
         backgroundColor: bgColor,
-        duration: duration ?? 3.seconds,
+        duration: duration,
         mainButton: to == "logout"
             ? TextButton(onPressed: () => 1, child: Text('Se deconnecter'))
             : null,

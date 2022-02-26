@@ -1,5 +1,8 @@
 {
-    "files.autoSave": "afterDelay",
-    "workbench.colorTheme": "Dracula",
-
+  "files.autoSave": "afterDelay",
+  // "workbench.colorTheme": "GitHub Light",
+  "workbench.colorTheme": "Dracula",
+  "bracketPairColorizer.showVerticalScopeLine": false,
+  "terminal.integrated.fontFamily": "Cascadia Code",
+  "editor.fontFamily": "'Cascadia Code', 'Courier New', monospace"
 }

@@ -3,9 +3,7 @@ import 'package:gesi_mobile/constantes/values.dart';
 import 'package:gesi_mobile/controllers/appController.dart';
 import 'package:gesi_mobile/controllers/authController.dart';
 import 'package:gesi_mobile/login.dart';
-import 'package:hive/hive.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {

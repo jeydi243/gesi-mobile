@@ -8,21 +8,21 @@ import 'package:dio/dio.dart';
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
   Rx<User> user = User.gt().obs;
+  Dio dio = Dio();
   RxBool isLoggedIn = false.obs;
-  TextEditingController name = TextEditingController();
-  TextEditingController email = TextEditingController();
+  TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
 // or new Dio with a BaseOptions instance.
 
   var options = BaseOptions(
-    baseUrl: 'http://localhost:3000/api',
+    baseUrl: 'http://localhost:3000',
     connectTimeout: 5000,
     receiveTimeout: 3000,
   );
   @override
   void onReady() {
     super.onReady();
-    Dio dio = Dio(options);
+    dio = Dio(options);
     ever(user, _setInitialScreen);
   }
 
@@ -35,15 +35,24 @@ class AuthController extends GetxController {
   }
 
   void signIn() async {
-    try {} catch (e) {
+    try {
+      Get.to(() => HomeScreen(),
+          transition: Transition.native, duration: 1.seconds);
+    } catch (e) {
       debugPrint(e.toString());
       Get.snackbar("Sign In Failed", "Try again");
+      _clearControllers();
     }
   }
 
-  void signUp() async {
-    showLoading();
-    try {} catch (e) {
+  Future<void> signUp() async {
+    try {
+      showLoading();
+      final res = await dio.post("/users/login",
+          data: {username: username.value, password: password.value});
+      Get.snackbar("Connexion", "Awwwwww ${res.data['message']}");
+      _clearControllers();
+    } catch (e) {
       debugPrint(e.toString());
       Get.snackbar("Sign In Failed", "Try again");
     }
@@ -53,11 +62,8 @@ class AuthController extends GetxController {
 
   void showLoading() {}
 
-  _addUserToFirestore(String userId) {}
-
   _clearControllers() {
-    name.clear();
-    email.clear();
+    username.clear();
     password.clear();
   }
 
