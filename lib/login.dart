@@ -14,15 +14,12 @@ class gesi extends StatefulWidget {
 class _gesiState extends State<gesi> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final AuthController _authController = Get.find();
-  TextEditingController username = TextEditingController(text: "dfdfdfdf");
-  TextEditingController password = TextEditingController(text: "dfdfdffff");
   void connexion() {
     final FormState? formState = _formKey.currentState;
     bool iValidForm = formState!.validate();
     if (iValidForm) {
       _formKey.currentState!.save();
       _authController.signIn();
-
     } else {
       print("Form is invalid");
     }
@@ -98,88 +95,99 @@ class _gesiState extends State<gesi> {
                             children: [
                               Padding(
                                 padding: EdgeInsets.symmetric(vertical: 5.0),
-                                child: TextFormField(
-                                  // controller: _authController.email,
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  validator: (value) {
-                                    if (value == null ||
-                                        value.isEmpty ||
-                                        value == "") {
-                                      return 'Vous devez remplir le username';
-                                    }
-                                    if (value.length < 4) {
-                                      return 'Too short';
-                                    }
-                                    return null;
-                                  },
-                                  cursorColor: Color(0xFF40FFAF),
-                                  decoration: const InputDecoration(
-                                      fillColor: Colors.white,
-                                      filled: true,
-                                      isDense: true,
-                                      contentPadding: EdgeInsets.fromLTRB(5, 5,
-                                          5, 5), // control your hints text size
-                                      labelText: "Name",
-                                      hintText: "Name",
-                                      errorStyle: TextStyle(
-                                          color: Colors.red, fontSize: 11),
-                                      focusedErrorBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              width: 2,
-                                              color: Color.fromRGBO(
-                                                  255, 7, 7, 1))),
-                                      errorBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              width: 2,
-                                              color: Color.fromRGBO(
-                                                  255, 7, 7, 1))),
-                                      focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              width: 2, color: Colors.amber)),
-                                      focusColor: Colors.amberAccent),
+                                child: Obx(
+                                  () => TextFormField(
+                                    controller: _authController.username.value,
+                                    autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
+                                    validator: (value) {
+                                      if (value == null ||
+                                          value.isEmpty ||
+                                          value == "") {
+                                        return 'Vous devez remplir le username';
+                                      }
+                                      if (value.length < 4) {
+                                        return 'Too short';
+                                      }
+                                      return null;
+                                    },
+                                    cursorColor: Color(0xFF40FFAF),
+                                    decoration: const InputDecoration(
+                                        fillColor: Colors.white,
+                                        filled: true,
+                                        isDense: true,
+                                        contentPadding: EdgeInsets.fromLTRB(
+                                            5,
+                                            5,
+                                            5,
+                                            5), // control your hints text size
+                                        labelText: "Name",
+                                        hintText: "Name",
+                                        errorStyle:
+                                            TextStyle(
+                                                color: Colors.red,
+                                                fontSize: 11),
+                                        focusedErrorBorder:
+                                            UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    width: 2,
+                                                    color: Color.fromRGBO(
+                                                        255, 7, 7, 1))),
+                                        errorBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                                width: 2,
+                                                color: Color.fromRGBO(
+                                                    255, 7, 7, 1))),
+                                        focusedBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                                width: 2, color: Colors.amber)),
+                                        focusColor: Colors.amberAccent),
+                                  ),
                                 ),
                               ),
                               Padding(
                                 padding: EdgeInsets.symmetric(vertical: 5.0),
-                                child: TextFormField(
-                                  controller: _authController.password,
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Vous devez remplir le mot de passe';
-                                    }
-                                    if (value.length < 4) {
-                                      return 'Too short';
-                                    }
-                                    return null;
-                                  },
-                                  cursorColor: Color(0xFF40FFAF),
-                                  decoration: const InputDecoration(
-                                      fillColor: Colors.white,
-                                      filled: true,
-                                      labelText: "Mot de passe",
-                                      hintText: "*********",
-                                      isDense: true,
-                                      errorStyle: TextStyle(
-                                          color: Colors.red, fontSize: 11),
-                                      focusedErrorBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              width: 2,
-                                              color: Color.fromRGBO(
-                                                  255, 7, 7, 1))),
-                                      errorBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              width: 2,
-                                              color: Color.fromRGBO(
-                                                  255, 7, 7, 1))),
-                                      contentPadding:
-                                          EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                      focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              width: 2, color: Colors.amber)),
-                                      focusColor: Colors.amberAccent),
+                                child: Obx(
+                                  () => TextFormField(
+                                    controller: _authController.password.value,
+                                    autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Vous devez remplir le mot de passe';
+                                      }
+                                      if (value.length < 4) {
+                                        return 'Too short';
+                                      }
+                                      return null;
+                                    },
+                                    cursorColor: Color(0xFF40FFAF),
+                                    decoration: const InputDecoration(
+                                        fillColor: Colors.white,
+                                        filled: true,
+                                        labelText: "Mot de passe",
+                                        hintText: "*********",
+                                        isDense: true,
+                                        errorStyle: TextStyle(
+                                            color: Colors.red, fontSize: 11),
+                                        focusedErrorBorder:
+                                            UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    width: 2,
+                                                    color: Color.fromRGBO(
+                                                        255, 7, 7, 1))),
+                                        errorBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                                width: 2,
+                                                color: Color.fromRGBO(
+                                                    255, 7, 7, 1))),
+                                        contentPadding:
+                                            EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                        focusedBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                                width: 2, color: Colors.amber)),
+                                        focusColor: Colors.amberAccent),
+                                  ),
                                 ),
                               ),
                             ],

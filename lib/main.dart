@@ -3,6 +3,7 @@ import 'package:gesi_mobile/constantes/values.dart';
 import 'package:gesi_mobile/controllers/appController.dart';
 import 'package:gesi_mobile/controllers/authController.dart';
 import 'package:gesi_mobile/login.dart';
+import 'package:gesi_mobile/screens/updateprofile.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -24,6 +25,7 @@ class GESI extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
+      routes: {'/updateprofile': (context) => UpdateProfile()},
       theme: GesiTheme.of(context),
       home: gesi(),
     );

@@ -8,17 +8,17 @@ class AppController extends GetxController {
     {
       'icon': Icons.home,
       'title': "Home",
-      'selectedColor': Colors.blue,
+      'selectedColor': Color.fromARGB(255, 29, 199, 43),
     },
     {
       'icon': Icons.favorite_border,
       'title': "Courses",
-      'selectedColor': Colors.pink,
+      'selectedColor': Color.fromARGB(255, 29, 199, 43),
     },
     {
       'icon': Icons.calendar_today,
       'title': "Calendar",
-      'selectedColor': Colors.teal,
+      'selectedColor': Color.fromARGB(255, 29, 199, 43),
     },
     {
       'icon': Icons.person,

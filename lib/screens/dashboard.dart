@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gesi_mobile/widgets/stats2.dart';
 import 'package:get/get.dart';
 
 class Dashboard extends StatefulWidget {
@@ -21,7 +22,7 @@ class _DashboardState extends State<Dashboard> {
           mainAxisSize: MainAxisSize.max,
           children: [
             CircleAvatar(
-              backgroundColor: Colors.blue,
+              backgroundColor: Color.fromARGB(255, 29, 199, 43),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -34,12 +35,13 @@ class _DashboardState extends State<Dashboard> {
               ],
             ),
             Container(
-              height: Get.height * .1,
+              height: Get.height * .4,
               width: Get.width * .9,
               decoration: BoxDecoration(
                   color: Color.fromARGB(255, 241, 246, 250),
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.circular(10)),
+              child: Stats2("Niveau de reussite"),
             )
           ]),
     );

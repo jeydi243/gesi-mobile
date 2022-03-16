@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ))
                 .toList()),
       ),
-      body: SafeArea(child: _child[_currentIndex] ?? Container()),
+      body: SafeArea(child: _child[_currentIndex] ?? Container(), left: true),
     );
   }
 }

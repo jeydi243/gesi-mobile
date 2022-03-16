@@ -3,48 +3,8 @@ import 'package:gesi_mobile/models/meeting.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class MeetingDataSource extends CalendarDataSource<Meeting> {
-  MeetingDataSource() {
-    List<Meeting> appointments = <Meeting>[];
-    final DateTime exceptionDate = DateTime(2021, 07, 20);
-
-    final Meeting normalAppointment = Meeting(
-      from: DateTime(2022, 02, 23, 10),
-      to: DateTime(2022, 02, 24, 12),
-      eventName: 'Planning',
-      id: '01',
-      background: Colors.pink,
-    );
-
-    appointments.add(normalAppointment);
-    final Meeting recurrenceApp = Meeting(
-      from: DateTime(2021, 07, 11, 10),
-      to: DateTime(2021, 07, 11, 12),
-      eventName: 'Planning',
-      id: '02',
-      background: Colors.green,
-      recurrenceRule: 'FREQ=DAILY;COUNT=20',
-      exceptionDates: <DateTime>[exceptionDate],
-    );
-
-    appointments.add(recurrenceApp);
-
-    final Meeting exceptionAppointment = Meeting(
-        from: exceptionDate.add(const Duration(hours: 14)),
-        to: exceptionDate.add(const Duration(hours: 15)),
-        eventName: 'Changed occurence',
-        id: '03',
-        background: Colors.pinkAccent,
-        recurrenceId: recurrenceApp.id);
-
-    appointments.add(exceptionAppointment);
-
-    appointments.add(Meeting(
-      from: DateTime.now().add(const Duration(hours: 4, days: -1)),
-      to: DateTime.now().add(const Duration(hours: 5, days: -1)),
-      eventName: 'Release Meeting',
-      id: '04',
-      background: Colors.lightBlueAccent,
-    ));
+  MeetingDataSource(List<Meeting> meetings) {
+    appointments = meetings;
   }
 
   @override

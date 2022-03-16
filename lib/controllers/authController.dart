@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:gesi_mobile/authentication.dart';
 import 'package:gesi_mobile/home.dart';
@@ -10,8 +11,13 @@ class AuthController extends GetxController {
   Rx<User> user = User.gt().obs;
   Dio dio = Dio();
   RxBool isLoggedIn = false.obs;
-  TextEditingController username = TextEditingController();
-  TextEditingController password = TextEditingController();
+  final username = TextEditingController(text: "dfdfdfhh").obs;
+  final password = TextEditingController(text: "jjjjjjjj").obs;
+  final profileTabs = [
+    {"title": "Stats", "icon": Icons.stacked_bar_chart_outlined},
+    {"title": "Courses", "icon": Icons.book},
+    {"title": "Messages", "icon": Icons.book},
+  ].obs;
 // or new Dio with a BaseOptions instance.
 
   var options = BaseOptions(
@@ -47,7 +53,6 @@ class AuthController extends GetxController {
 
   Future<void> signUp() async {
     try {
-      showLoading();
       final res = await dio.post("/users/login",
           data: {username: username.value, password: password.value});
       Get.snackbar("Connexion", "Awwwwww ${res.data['message']}");
@@ -60,11 +65,15 @@ class AuthController extends GetxController {
 
   void signOut() async {}
 
-  void showLoading() {}
+  Future<void> updateProfile() async {
+    await HapticFeedback.mediumImpact();
+    print("Okay");
+    Get.toNamed('/updateprofile');
+  }
 
   _clearControllers() {
-    username.clear();
-    password.clear();
+    username.value.clear();
+    password.value.clear();
   }
 
   updateUserData(Map<String, dynamic> data) {}

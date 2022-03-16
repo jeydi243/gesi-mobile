@@ -1,16 +1,5 @@
 part of values;
 
-final emptyState = Column(
-  mainAxisAlignment: MainAxisAlignment.center,
-  children: [
-    Image.asset("assets/nothing_here.png"),
-    Padding(
-        padding: EdgeInsets.only(top: 8.0),
-        child:
-            Text('Nothing here. Come back soon!', textAlign: TextAlign.center))
-  ],
-);
-
 class GesiTheme {
   static ThemeData of(context) {
     var theme = Theme.of(context);
@@ -22,6 +11,13 @@ class GesiTheme {
           primary: AppColors.colorCustom,
           brightness: Brightness.light),
       primaryColorDark: AppColors.colorCustom[900],
+      tabBarTheme: TabBarTheme(
+          labelColor: Colors.teal,
+          indicatorSize: TabBarIndicatorSize.label,
+          indicator: BoxDecoration(
+              color: Colors.transparent,
+              border: Border(bottom: BorderSide(color: Colors.teal, width: 2))),
+          unselectedLabelStyle: GoogleFonts.k2d(color: Colors.teal[50])),
       bottomAppBarColor: AppColors.colorCustom[900],
       scaffoldBackgroundColor: AppColors.background,
       errorColor: AppColors.error,
@@ -74,9 +70,9 @@ class GesiTheme {
       textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
             enableFeedback: true,
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+            backgroundColor: MaterialStateProperty.all<Color?>(Color.fromARGB(255, 243, 248, 248)),
             minimumSize: MaterialStateProperty.all<Size>(
-                Size(Get.width / 4, Get.height * .05)),
+                Size(Get.width / 4, Get.height * .02)),
             foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
             textStyle: MaterialStateProperty.all<TextStyle>(
                 TextStyle(color: AppColors.white))),
