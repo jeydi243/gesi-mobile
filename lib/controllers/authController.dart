@@ -16,7 +16,7 @@ class AuthController extends GetxController {
   final profileTabs = [
     {"title": "Stats", "icon": Icons.stacked_bar_chart_outlined},
     {"title": "Courses", "icon": Icons.book},
-    {"title": "Messages", "icon": Icons.book},
+   
   ].obs;
 // or new Dio with a BaseOptions instance.
 

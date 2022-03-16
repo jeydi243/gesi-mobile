@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gesi_mobile/controllers/authController.dart';
+import 'package:gesi_mobile/screens/widgets/CourseList.dart';
 import 'package:gesi_mobile/widgets/stats1.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -49,6 +50,7 @@ class _ProfileState extends State<Profile> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
                       onTap: () async {
@@ -87,13 +89,13 @@ class _ProfileState extends State<Profile> {
                     ),
                   ],
                 ),
-                IconButton(
-                    enableFeedback: true,
-                    onPressed: () => {},
-                    icon: Icon(
-                      MdiIcons.menu,
-                      color: Colors.black,
-                    ))
+                // IconButton(
+                //     enableFeedback: true,
+                //     onPressed: () => {},
+                //     icon: Icon(
+                //       MdiIcons.menu,
+                //       color: Colors.black,
+                //     ))
               ],
             ),
           ),
@@ -119,14 +121,8 @@ class _ProfileState extends State<Profile> {
                     children: [Stats1("Pourcentages")],
                   ),
                 ),
-                Container(
-                  color: Colors.amber,
-                  width: Get.width,
-                ),
-                Container(
-                  color: Colors.purple,
-                  width: Get.width,
-                ),
+                CourseList(),
+               
               ]),
             ),
           )
