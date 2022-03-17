@@ -1,10 +1,10 @@
 part of values;
 
 class AppColors {
+  static const scaffoldBackground = Color(0xFFF1F5FA);
   static const primary = Color(0xFFF1F5FA); // gris blue
   static const second = Color(0xFFfbb02d);
   static const info = Color(0xFF7CB518);
-  static const background = Color(0xFFF1F5FA);
   static const danger = Color(0xFF979797);
   static const warning = Colors.amber;
   static const error = Colors.red;

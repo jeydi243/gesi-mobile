@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
+import 'package:gesi_mobile/screens/course-details.dart';
 import 'package:get/get.dart';
 
 class CourseList extends StatefulWidget {
@@ -22,7 +23,7 @@ class _CourseListState extends State<CourseList> {
       itemBuilder: (context, index) {
         return OpenContainer(
           transitionDuration: .900.seconds,
-          transitionType: ContainerTransitionType.fadeThrough,
+          // transitionType: ContainerTransitionType.fadeThrough,
           closedBuilder: (BuildContext context, void Function() action) {
             return Container(
               color: Colors.white,
@@ -33,11 +34,15 @@ class _CourseListState extends State<CourseList> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(right: 8),
-                      child: Image.asset(
-                        "assets/bg-2.jpg",
-                        height: Get.height * .09,
-                        width: Get.height * .09,
-                        fit: BoxFit.cover,
+                      child: Hero(
+                        key: Key('top1'),
+                        tag: 'top',
+                        child: Image.asset(
+                          "assets/bg-2.jpg",
+                          height: Get.height * .09,
+                          width: Get.height * .09,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     Column(
@@ -48,6 +53,11 @@ class _CourseListState extends State<CourseList> {
                             TextSpan(
                                 text:
                                     "Introduction à la Programmtion orienté "),
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color.fromARGB(255, 7, 72, 105),
+                              fontWeight: FontWeight.bold,
+                            ),
                             softWrap: true,
                             overflow: TextOverflow.ellipsis),
                         Text.rich(
@@ -56,13 +66,13 @@ class _CourseListState extends State<CourseList> {
                               TextSpan(
                                 text: 'Started by ',
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 13,
                                 ),
                               ),
                               TextSpan(
                                 text: '20-02-2022',
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 13,
                                   color: Colors.blueGrey[900],
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -75,15 +85,15 @@ class _CourseListState extends State<CourseList> {
                           TextSpan(
                             children: [
                               TextSpan(
-                                text: 'Author ',
+                                text: 'Author: ',
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 13,
                                 ),
                               ),
                               TextSpan(
                                 text: 'Igr Musumbu',
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 13,
                                   color: Colors.blueGrey[900],
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -101,12 +111,7 @@ class _CourseListState extends State<CourseList> {
           },
           openBuilder: (BuildContext context,
               void Function({Object? returnValue}) action) {
-            return Container(
-              child: ListTile(
-                title: Text('Course $index'),
-                onTap: action,
-              ),
-            );
+            return CourseDetails();
           },
         );
       },

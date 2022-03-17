@@ -26,7 +26,8 @@ class GESI extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       routes: {'/updateprofile': (context) => UpdateProfile()},
-      theme: GesiTheme.of(context),
+      theme: GesiTheme.light(context),
+      defaultTransition: Transition.fadeIn,
       home: gesi(),
     );
   }

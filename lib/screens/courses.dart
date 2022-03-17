@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gesi_mobile/screens/widgets/CourseList.dart';
 
 class Courses extends StatefulWidget {
   Courses({Key? key}) : super(key: key);
@@ -10,8 +11,6 @@ class Courses extends StatefulWidget {
 class _CoursesState extends State<Courses> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red,
-    );
+    return CourseList();
   }
 }

@@ -1,10 +1,11 @@
 part of values;
 
 class GesiTheme {
-  static ThemeData of(context) {
+  static ThemeData light(context) {
     var theme = Theme.of(context);
     return theme.copyWith(
       primaryColor: AppColors.colorCustom,
+      scaffoldBackgroundColor: AppColors.scaffoldBackground,
       colorScheme: ColorScheme.fromSwatch().copyWith(
           secondary: AppColors.second,
           error: AppColors.error,
@@ -13,13 +14,15 @@ class GesiTheme {
       primaryColorDark: AppColors.colorCustom[900],
       tabBarTheme: TabBarTheme(
           labelColor: Colors.teal,
-          indicatorSize: TabBarIndicatorSize.label,
-          indicator: BoxDecoration(
-              color: Colors.transparent,
-              border: Border(bottom: BorderSide(color: Colors.teal, width: 2))),
+          indicatorSize: TabBarIndicatorSize.tab,
+          labelPadding: EdgeInsets.all(5),
+          labelStyle: TextStyle(
+              fontSize: 12,
+              fontStyle: FontStyle.italic,
+              color: Colors.white,
+              fontWeight: FontWeight.bold),
           unselectedLabelStyle: GoogleFonts.k2d(color: Colors.teal[50])),
       bottomAppBarColor: AppColors.colorCustom[900],
-      scaffoldBackgroundColor: AppColors.background,
       errorColor: AppColors.error,
       dividerColor: AppColors.colorCustom,
       inputDecorationTheme: InputDecorationTheme(
@@ -70,7 +73,8 @@ class GesiTheme {
       textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
             enableFeedback: true,
-            backgroundColor: MaterialStateProperty.all<Color?>(Color.fromARGB(255, 243, 248, 248)),
+            backgroundColor: MaterialStateProperty.all<Color?>(
+                Color.fromARGB(255, 243, 248, 248)),
             minimumSize: MaterialStateProperty.all<Size>(
                 Size(Get.width / 4, Get.height * .02)),
             foregroundColor: MaterialStateProperty.all<Color>(Colors.black),

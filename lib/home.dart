@@ -39,7 +39,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     ))
                 .toList()),
       ),
-      body: SafeArea(child: _child[_currentIndex] ?? Container(), left: true),
+      body: SafeArea(
+          child: AnimatedSwitcher(
+        switchInCurve: Curves.easeInOutCubicEmphasized,
+        transitionBuilder: (child, an) => FadeTransition(
+          // scale: an,
+          opacity: an,
+          child: child,
+        ),
+        duration: 1.seconds,
+        child: _child[_currentIndex],
+      )),
+      // body: SafeArea(child: _child[_currentIndex] ?? Container(), left: true),
     );
   }
 }
