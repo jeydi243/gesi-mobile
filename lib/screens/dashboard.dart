@@ -13,7 +13,6 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
       padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
       width: Get.width,
       child: Column(
@@ -22,7 +21,7 @@ class _DashboardState extends State<Dashboard> {
           mainAxisSize: MainAxisSize.max,
           children: [
             CircleAvatar(
-              backgroundColor: Color.fromARGB(255, 29, 199, 43),
+              backgroundColor: Color.fromARGB(255, 221, 222, 231),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -38,7 +37,7 @@ class _DashboardState extends State<Dashboard> {
               height: Get.height * .4,
               width: Get.width * .9,
               decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 241, 246, 250),
+                  color: Color.fromARGB(255, 161, 241, 255),
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.circular(10)),
               child: Stats2("Niveau de reussite"),

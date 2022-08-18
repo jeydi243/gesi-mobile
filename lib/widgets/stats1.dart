@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:gesi_mobile/constantes/values.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'indicator.dart';
@@ -17,15 +18,16 @@ class _Stats1State extends State<Stats1> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Color.fromARGB(255, 201, 52, 52),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5), color: Colors.white),
+      padding: EdgeInsets.all(15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             widget.title,
-            style: GoogleFonts.k2d(color: Colors.amber, fontSize: 20),
+            style: GoogleFonts.k2d(color: AppColors.textDark, fontSize: 20),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,

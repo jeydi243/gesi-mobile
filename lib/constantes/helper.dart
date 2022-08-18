@@ -18,21 +18,19 @@ class Helper {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Divider(
                 thickness: 2,
-                color: AppColors.gray_200,
               ),
             ),
           ),
           Text(
             'ou',
             style: TextStyle(
-                color: AppColors.second, fontSize: AppSizes.textFontSize),
+                color: AppColors.accent, fontSize: AppSizes.textFontSize),
           ),
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Divider(
                 thickness: 2,
-                color: AppColors.gray_200,
               ),
             ),
           ),
@@ -57,7 +55,6 @@ class Helper {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Divider(
                 thickness: 2,
-                color: AppColors.gray_200,
               ),
             ),
           ),
@@ -77,7 +74,6 @@ class Helper {
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: Divider(
                 thickness: 2,
-                color: AppColors.gray_200,
               ),
             ),
           ),
@@ -148,10 +144,9 @@ class Helper {
         borderRadius: 10,
         snackStyle: SnackStyle.FLOATING,
         snackPosition: position,
-        colorText: AppColors.white,
         icon: Icon(
           icon,
-          color: AppColors.second,
+          color: AppColors.accent,
         ),
         shouldIconPulse: false,
         barBlur: barBlur,

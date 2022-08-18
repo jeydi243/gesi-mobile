@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gesi_mobile/constantes/values.dart';
 import 'package:get/get.dart';
+import 'package:palette_generator/palette_generator.dart';
 
 class AppController extends GetxController {
   static AppController instance = Get.find();
@@ -8,26 +10,33 @@ class AppController extends GetxController {
     {
       'icon': Icons.home,
       'title': "Home",
-      'selectedColor': Color.fromARGB(255, 29, 199, 43),
+      'selectedColor': AppColors.accent,
     },
     {
       'icon': Icons.favorite_border,
       'title': "Courses",
-      'selectedColor': Color.fromARGB(255, 29, 199, 43),
+      'selectedColor': AppColors.accent,
     },
     {
       'icon': Icons.calendar_today,
       'title': "Calendar",
-      'selectedColor': Color.fromARGB(255, 29, 199, 43),
+      'selectedColor': AppColors.accent,
     },
     {
       'icon': Icons.person,
       'title': "Profile",
-      'selectedColor': Color.fromARGB(255, 29, 199, 43),
+      'selectedColor': AppColors.accent,
     },
   ].obs;
 
   changeDIsplayedAuthWidget() {
     isgesiWidgetDisplayed.value = !isgesiWidgetDisplayed.value;
+  }
+
+  Future<Color?> findColor(String assetImage) async {
+    var paletteGenerator = await PaletteGenerator.fromImageProvider(
+      Image.asset(assetImage).image,
+    );
+    return paletteGenerator.dominantColor?.color;
   }
 }

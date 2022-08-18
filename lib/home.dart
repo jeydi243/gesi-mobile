@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gesi_mobile/screens/calendar.dart';
-import 'package:gesi_mobile/screens/courses.dart';
+import 'package:gesi_mobile/screens/courses/courses.dart';
 import 'package:gesi_mobile/screens/profile.dart';
 import 'package:get/get.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -30,13 +30,16 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: Obx(
         () => SalomonBottomBar(
             currentIndex: _currentIndex,
+            duration: 1.seconds,
             onTap: (i) => setState(() => _currentIndex = i),
+            selectedColorOpacity: .01,
             items: app.items
                 .map((element) => SalomonBottomBarItem(
-                      icon: Icon(element['icon']),
-                      title: Text(element['title']),
-                      selectedColor: element['selectedColor'],
-                    ))
+                    icon: Icon(element['icon']),
+                    title: Text(element['title']),
+                    selectedColor: element['selectedColor'],
+                    unselectedColor:
+                        Get.isDarkMode ? Colors.white : Colors.black54))
                 .toList()),
       ),
       body: SafeArea(

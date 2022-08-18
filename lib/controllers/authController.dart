@@ -25,6 +25,7 @@ class AuthController extends GetxController {
     connectTimeout: 5000,
     receiveTimeout: 3000,
   );
+
   @override
   void onReady() {
     super.onReady();

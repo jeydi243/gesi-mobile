@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gesi_mobile/constantes/values.dart';
 import 'package:gesi_mobile/controllers/appController.dart';
 import 'package:gesi_mobile/controllers/authController.dart';
@@ -10,7 +11,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-
   Get.put(AppController());
   Get.put(AuthController());
 
@@ -22,11 +22,16 @@ class GESI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(Get.isDarkMode
+        ? SystemUiOverlayStyle.dark
+        : SystemUiOverlayStyle.light);
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Gesi',
       debugShowCheckedModeBanner: false,
       routes: {'/updateprofile': (context) => UpdateProfile()},
       theme: GesiTheme.light(context),
+      darkTheme: GesiTheme.dark(context),
+      themeMode: ThemeMode.system,
       defaultTransition: Transition.fadeIn,
       home: gesi(),
     );

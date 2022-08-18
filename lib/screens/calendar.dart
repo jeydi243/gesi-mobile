@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:gesi_mobile/constantes/values.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import '../df.dart';
@@ -11,8 +13,13 @@ class Calendar extends StatefulWidget {
   State<Calendar> createState() => _CalendarState();
 }
 
-class _CalendarState extends State<Calendar> {
-  void calendarTapped(CalendarTapDetails details) {
+class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
+  CalendarController _calendarController = CalendarController();
+  AnimationController? controller;
+  Animation? colorAnimation;
+  Animation? sizeAnimation;
+  void calendarTapped(CalendarTapDetails details) async {
+    await HapticFeedback.vibrate();
     if (details.targetElement == CalendarElement.appointment ||
         details.targetElement == CalendarElement.agenda) {
       // final Meeting _meeting = details.appointments![0];
@@ -23,12 +30,32 @@ class _CalendarState extends State<Calendar> {
     }
   }
 
+  void calendarLongPress(CalendarLongPressDetails details) async {
+    await HapticFeedback.vibrate();
+    if (details.targetElement == CalendarElement.appointment ||
+        details.targetElement == CalendarElement.agenda) {
+      // final Meeting _meeting = details.appointments![0];
+
+      Get.snackbar("Details on tap", "message $details",
+          backgroundColor: Colors.white,
+          forwardAnimationCurve: Curves.easeInOutCirc);
+    }
+  }
+
+  @override
+  void initState() {
+    _calendarController = CalendarController();
+    _calendarController.selectedDate = DateTime(2022, 03, 18);
+    _calendarController.displayDate = DateTime(2022, 03, 18);
+    super.initState();
+  }
+
   MeetingDataSource? getsource() {
     List<Meeting> events = <Meeting>[];
     final DateTime exceptionDate = DateTime(2021, 07, 20);
     final Meeting recurrenceApp = Meeting(
-      from: DateTime(2021, 07, 11, 10),
-      to: DateTime(2021, 07, 11, 12),
+      from: DateTime(2022, 03, 18, 10),
+      to: DateTime(2022, 03, 18, 12),
       eventName: 'Planning',
       id: '02',
       background: Colors.green,
@@ -36,8 +63,8 @@ class _CalendarState extends State<Calendar> {
       exceptionDates: <DateTime>[exceptionDate],
     );
     final Meeting normalAppointment = Meeting(
-      from: DateTime(2022, 02, 28, 20),
-      to: DateTime(2022, 02, 28, 21, 30),
+      from: DateTime(2022, 03, 18, 20),
+      to: DateTime(2022, 03, 18, 21, 30),
       eventName: 'Planning',
       id: '01',
       background: Colors.pink,
@@ -63,15 +90,12 @@ class _CalendarState extends State<Calendar> {
   }
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext ctx) {
     return SfCalendar(
       showNavigationArrow: ctx.isPortrait ? false : true,
       allowAppointmentResize: true,
+      controller: _calendarController,
+      cellBorderColor: Color.fromARGB(34, 158, 158, 158),
       allowDragAndDrop: ctx.isPortrait ? false : true,
       allowViewNavigation: ctx.isPortrait ? false : true,
       scheduleViewSettings: ScheduleViewSettings(
@@ -81,7 +105,8 @@ class _CalendarState extends State<Calendar> {
             textAlign: TextAlign.center,
           )),
       dataSource: getsource(),
-      appointmentTextStyle: TextStyle(color: Colors.red),
+      appointmentTextStyle:
+          TextStyle(color: Get.isDarkMode ? Colors.white : Colors.amber),
       view: ctx.isPortrait ? CalendarView.day : CalendarView.timelineDay,
       timeSlotViewSettings: TimeSlotViewSettings(
           timeFormat: "h:mm",
@@ -92,22 +117,25 @@ class _CalendarState extends State<Calendar> {
               color: Colors.teal[500],
               fontStyle: FontStyle.italic)),
       monthViewSettings: MonthViewSettings(showAgenda: true),
-      backgroundColor: Colors.white,
+      backgroundColor: Get.theme.scaffoldBackgroundColor,
       headerStyle: CalendarHeaderStyle(
           backgroundColor: Colors.white,
           textStyle: TextStyle(
               color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20)),
       appointmentBuilder: (ctx, apoi) {
-        return Container(
+        return AnimatedContainer(
           height: Get.height * .2,
           decoration: BoxDecoration(
-              color: Colors.pink[50],
+              color: Color.fromARGB(255, 245, 246, 248),
               // borderRadius: BorderRadius.circular(5),
-              border: Border(left: BorderSide(color: Colors.pink, width: 3))),
-          child: Text('Okay'),
+              border:
+                  Border(left: BorderSide(color: AppColors.accent, width: 3))),
+          duration: 2.seconds,
+          child: Text('Okay ${apoi.appointments.first}'),
         );
       },
-      onTap: calendarTapped,
+      // onTap: calendarTapped,
+      onLongPress: calendarLongPress,
     );
   }
 }

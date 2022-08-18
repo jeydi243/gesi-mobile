@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gesi_mobile/constantes/values.dart';
 import 'package:gesi_mobile/controllers/authController.dart';
-import 'package:gesi_mobile/screens/widgets/CourseList.dart';
+import 'package:gesi_mobile/screens/courses/CourseList.dart';
 import 'package:gesi_mobile/widgets/stats1.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -18,7 +19,13 @@ class _ProfileState extends State<Profile> {
 
   Widget tabs(Map<String, dynamic> map) {
     return Tab(
-      child: Row(children: [Icon(map['icon']), Text(map['title'])]),
+      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Icon(map['icon']),
+        Padding(
+          padding: const EdgeInsets.only(left: 8),
+          child: Text(map['title']),
+        )
+      ]),
     );
   }
 
@@ -40,7 +47,7 @@ class _ProfileState extends State<Profile> {
       length: controller.profileTabs.length,
       child: Container(
         padding: EdgeInsets.only(top: 10),
-        color: Colors.white,
+        color: Get.theme.scaffoldBackgroundColor,
         height: Get.height,
         width: Get.width,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -70,14 +77,14 @@ class _ProfileState extends State<Profile> {
                           Text(
                             "Kadiongo Ilunga",
                             style: TextStyle(
-                                color: Colors.black,
+                                color: AppColors.textDark,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
                             "Ekadiongo@gmail.com",
                             style: TextStyle(
-                              color: Colors.teal,
+                              color: AppColors.textDark,
                               fontSize: 13,
                             ),
                           ),
@@ -89,32 +96,28 @@ class _ProfileState extends State<Profile> {
                     ),
                   ],
                 ),
-                // IconButton(
-                //     enableFeedback: true,
-                //     onPressed: () => {},
-                //     icon: Icon(
-                //       MdiIcons.menu,
-                //       color: Colors.black,
-                //     ))
               ],
             ),
           ),
           Material(
             type: MaterialType.card,
-            child: Obx(() => TabBar(tabs: [
-                  ...controller.profileTabs
-                      .map<Widget>((element) => tabs(element))
-                      .toList()
-                ])),
+            child: Obx(() => TabBar(
+                  tabs: [
+                    ...controller.profileTabs
+                        .map<Widget>((element) => tabs(element))
+                        .toList()
+                  ],
+                  automaticIndicatorColorAdjustment: true,
+                )),
           ),
           Material(
             type: MaterialType.card,
-            child: Container(
+            child: SizedBox(
               width: Get.width,
               height: Get.height * .9,
               child: TabBarView(physics: BouncingScrollPhysics(), children: [
                 Container(
-                  color: Colors.white,
+                  color: Get.theme.scaffoldBackgroundColor,
                   padding: EdgeInsets.all(10),
                   width: Get.width,
                   child: Column(
@@ -122,7 +125,6 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                 CourseList(),
-               
               ]),
             ),
           )

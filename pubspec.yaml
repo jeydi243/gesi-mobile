@@ -11,7 +11,7 @@ dependencies:
   dio: ^4.0.4
   flutter:
     sdk: flutter
-  get: ^4.6.1
+  get: ^4.6.5
   google_fonts: ^2.1.0
   hive: ^2.0.5
   hive_flutter:
@@ -20,7 +20,9 @@ dependencies:
   salomon_bottom_bar: ^3.2.0
   syncfusion_flutter_calendar: ^19.4.53
   web_socket_channel: ^2.1.0
+  palette_generator: ^0.3.3
   animations: ^2.0.2
+  dart_amqp: ^0.2.1
 
 dev_dependencies:
   flutter_lints: ^1.0.0
