@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -144,6 +145,26 @@ class CourseDetails extends GetView<AppController> {
                               ),
                               Text(
                                   "lorem ipsum Dolore deserunt cupidatat proident commodo nulla esse culpa ex anim cillum consectetur qui. Lorem anim sint ad pariatur reprehenderit tempor velit reprehenderit ad esse enim cillum. Ut incididunt culpa nisi reprehenderit adipisicing id ex quis adipisicing."),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 5, vertical: 8),
+                                child: Row(children: [
+                                  Badge(
+                                    toAnimate: false,
+                                    shape: BadgeShape.square,
+                                    badgeColor:
+                                        AppColors.accentDark.withOpacity(.5),
+                                    borderRadius: BorderRadius.circular(20),
+                                    badgeContent: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 5),
+                                      child: Text('Technology',
+                                          style:
+                                              TextStyle(color: Colors.white)),
+                                    ),
+                                  ),
+                                ]),
+                              ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 10),
                                 child: Row(
