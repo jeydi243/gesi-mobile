@@ -123,9 +123,8 @@ class GesiTheme {
     var theme = ThemeData.dark();
 
     return theme.copyWith(
-      scaffoldBackgroundColor: AppColors.backgroundDark,
+      iconTheme: theme.iconTheme.copyWith(color: AppColors.accent, size: 24),
       errorColor: AppColors.error,
-      dividerTheme: DividerThemeData(color: AppColors.accent),
       colorScheme: ColorScheme.fromSwatch().copyWith(
           secondary: AppColors.accent,
           error: AppColors.error,
@@ -137,15 +136,31 @@ class GesiTheme {
           onSurface: Color.fromARGB(255, 0, 255, 47),
           shadow: Color.fromARGB(255, 252, 252, 252),
           brightness: Brightness.light),
+      dividerTheme: DividerThemeData(color: AppColors.accent),
       primaryColorDark: AppColors.primary[900],
+      scaffoldBackgroundColor: AppColors.backgroundDark,
       tabBarTheme: TabBarTheme(
           indicatorSize: TabBarIndicatorSize.tab,
           indicator: BoxDecoration(
-            color: AppColors.backgroundDark,
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                AppColors.accentDark.withOpacity(.2),
+                AppColors.accentDark.withOpacity(.01),
+                // Colors.red,
+              ],
+            ),
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(5), topRight: Radius.circular(5)),
+            // color: AppColors.accentDark.withOpacity(.2),
           ),
           labelPadding: EdgeInsets.all(5),
+          unselectedLabelColor: AppColors.textDark,
+          overlayColor:
+              MaterialStateProperty.all<Color>(AppColors.backgroundDark),
           labelStyle: GoogleFonts.k2d(
-              fontSize: 12,
+              fontSize: 14,
               fontStyle: FontStyle.italic,
               color: Get.theme.scaffoldBackgroundColor,
               fontWeight: FontWeight.bold),
@@ -218,7 +233,6 @@ class GesiTheme {
         textTheme: ButtonTextTheme.primary,
         buttonColor: AppColors.primary,
       ),
-      iconTheme: theme.iconTheme.copyWith(color: AppColors.accent, size: 24),
       primaryIconTheme: IconThemeData(color: AppColors.accent, size: 24),
       dialogBackgroundColor: AppColors.backgroundDark,
       dialogTheme: DialogTheme(
@@ -226,16 +240,16 @@ class GesiTheme {
           titleTextStyle: GoogleFonts.k2d(),
           alignment: Alignment.center),
       textButtonTheme: TextButtonThemeData(
-        style: ButtonStyle(
-            enableFeedback: true,
-            backgroundColor: MaterialStateProperty.all<Color?>(
-                Colors.teal[50]?.withOpacity(.2)),
-            minimumSize: MaterialStateProperty.all<Size>(
-                Size(Get.width, Get.height * .02)),
-            textStyle: MaterialStateProperty.all<TextStyle>(
-                TextStyle(color: AppColors.text))),
-      ),
+          style: ButtonStyle(
+              enableFeedback: true,
+              backgroundColor: MaterialStateProperty.all<Color?>(
+                  Colors.teal[50]?.withOpacity(.2)),
+              minimumSize: MaterialStateProperty.all<Size>(
+                  Size(Get.width, Get.height * .02)),
+              textStyle: MaterialStateProperty.all<TextStyle>(
+                  GoogleFonts.k2d(color: AppColors.textDark)))),
       bottomNavigationBarTheme: theme.bottomNavigationBarTheme.copyWith(
+          enableFeedback: true,
           elevation: 0,
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.white,

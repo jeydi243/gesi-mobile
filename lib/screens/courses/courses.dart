@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gesi_mobile/screens/courses/CourseList.dart';
+import 'package:gesi_mobile/screens/courses/courseList.dart';
 
 class Courses extends StatefulWidget {
   Courses({Key? key}) : super(key: key);

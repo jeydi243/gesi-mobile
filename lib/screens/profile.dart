@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gesi_mobile/constantes/values.dart';
 import 'package:gesi_mobile/controllers/authController.dart';
-import 'package:gesi_mobile/screens/courses/CourseList.dart';
+import 'package:gesi_mobile/screens/courses/courseList.dart';
 import 'package:gesi_mobile/widgets/stats1.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';

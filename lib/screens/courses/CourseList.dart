@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 import 'package:gesi_mobile/constantes/values.dart';
-import 'package:gesi_mobile/screens/courses/course-details.dart';
+import 'package:gesi_mobile/screens/courses/courseDetails.dart';
 import 'package:get/get.dart';
 
 class CourseList extends StatefulWidget {
@@ -19,7 +19,7 @@ class _CourseListState extends State<CourseList> {
       child: ListView.separated(
         clipBehavior: Clip.hardEdge,
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        itemCount: 10,
+        itemCount: 5,
         addAutomaticKeepAlives: true,
         controller: ScrollController(),
         physics: BouncingScrollPhysics(),
@@ -41,7 +41,7 @@ class _CourseListState extends State<CourseList> {
                           key: Key('top1'),
                           tag: 'top',
                           child: Image.asset(
-                            "assets/bg-2.jpg",
+                            "assets/courses/2.jpg",
                             height: Get.height * .09,
                             width: Get.height * .09,
                             fit: BoxFit.cover,

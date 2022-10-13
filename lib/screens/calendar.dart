@@ -58,7 +58,7 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
       to: DateTime(2022, 03, 18, 12),
       eventName: 'Planning',
       id: '02',
-      background: Colors.green,
+      background: Colors.blue,
       recurrenceRule: 'FREQ=DAILY;COUNT=20',
       exceptionDates: <DateTime>[exceptionDate],
     );
@@ -98,11 +98,15 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
       cellBorderColor: Color.fromARGB(34, 158, 158, 158),
       allowDragAndDrop: ctx.isPortrait ? false : true,
       allowViewNavigation: ctx.isPortrait ? false : true,
+      onTap: (CalendarTapDetails Caldet) {
+        print(Caldet.appointments);
+        print(Caldet.date);
+      },
       scheduleViewSettings: ScheduleViewSettings(
           appointmentItemHeight: 60,
           weekHeaderSettings: WeekHeaderSettings(
             height: 40,
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.end,
           )),
       dataSource: getsource(),
       appointmentTextStyle:
@@ -114,24 +118,35 @@ class _CalendarState extends State<Calendar> with TickerProviderStateMixin {
           timeTextStyle: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w500,
-              color: Colors.teal[500],
+              color: AppColors.accent,
               fontStyle: FontStyle.italic)),
       monthViewSettings: MonthViewSettings(showAgenda: true),
       backgroundColor: Get.theme.scaffoldBackgroundColor,
       headerStyle: CalendarHeaderStyle(
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.accent,
           textStyle: TextStyle(
               color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20)),
       appointmentBuilder: (ctx, apoi) {
-        return AnimatedContainer(
+        final Meeting meet = apoi.appointments.first;
+        return Container(
           height: Get.height * .2,
+          padding: EdgeInsets.only(left: 10, top: 5),
           decoration: BoxDecoration(
-              color: Color.fromARGB(255, 245, 246, 248),
-              // borderRadius: BorderRadius.circular(5),
-              border:
-                  Border(left: BorderSide(color: AppColors.accent, width: 3))),
-          duration: 2.seconds,
-          child: Text('Okay ${apoi.appointments.first}'),
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(5), topRight: Radius.circular(5)),
+            color: meet.background,
+            // border:
+            //     Border(left: BorderSide(color: AppColors.accent, width: 3))
+          ),
+          // duration: 2.seconds,
+          child: Text(
+            '${apoi.appointments.first.eventName}',
+            softWrap: false,
+            style: TextStyle(
+                overflow: TextOverflow.ellipsis,
+                color: AppColors.backgroundDark,
+                fontWeight: FontWeight.bold),
+          ),
         );
       },
       // onTap: calendarTapped,
