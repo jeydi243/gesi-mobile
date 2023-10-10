@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 import 'package:gesi_mobile/constantes/values.dart';

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gesi_mobile/constantes/values.dart';

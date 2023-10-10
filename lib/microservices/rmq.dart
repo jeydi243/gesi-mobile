@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, non_constant_identifier_names
+
 import "package:dart_amqp/dart_amqp.dart";
 
 void MicroInit() async {

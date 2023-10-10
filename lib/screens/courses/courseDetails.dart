@@ -1,4 +1,6 @@
-import 'package:badges/badges.dart';
+// ignore_for_file: file_names, avoid_print
+
+// import 'package:badges/badges.dart' as BadgeD;
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -8,6 +10,8 @@ import 'package:get/get.dart';
 import 'package:glass_kit/glass_kit.dart';
 
 class CourseDetails extends GetView<AppController> {
+  const CourseDetails({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -138,7 +142,7 @@ class CourseDetails extends GetView<AppController> {
                                     tag: 'null',
                                     child: Text(
                                       'Introduction à la programmation',
-                                      style: Get.textTheme.headline4!.copyWith(
+                                      style: Get.textTheme.headlineMedium!.copyWith(
                                           color: AppColors.accent,
                                           fontWeight: FontWeight.bold),
                                     )),
@@ -149,20 +153,20 @@ class CourseDetails extends GetView<AppController> {
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 5, vertical: 8),
                                 child: Row(children: [
-                                  Badge(
-                                    toAnimate: false,
-                                    shape: BadgeShape.square,
-                                    badgeColor:
-                                        AppColors.accentDark.withOpacity(.5),
-                                    borderRadius: BorderRadius.circular(20),
-                                    badgeContent: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 5),
-                                      child: Text('Technology',
-                                          style:
-                                              TextStyle(color: Colors.white)),
-                                    ),
-                                  ),
+                                  // BadgeD(
+                                  //   toAnimate: false,
+                                  //   shape: BadgeShape.square,
+                                  //   badgeColor:
+                                  //       AppColors.accentDark.withOpacity(.5),
+                                  //   borderRadius: BorderRadius.circular(20),
+                                  //   badgeContent: Padding(
+                                  //     padding: const EdgeInsets.symmetric(
+                                  //         horizontal: 5),
+                                  //     child: Text('Technology',
+                                  //         style:
+                                  //             TextStyle(color: Colors.white)),
+                                  //   ),
+                                  // ),
                                 ]),
                               ),
                               Padding(
@@ -196,7 +200,7 @@ class CourseDetails extends GetView<AppController> {
                                   children: [
                                     Text(
                                       "Lessons",
-                                      style: Get.textTheme.headline5!
+                                      style: Get.textTheme.headlineSmall!
                                           .copyWith(color: AppColors.accent),
                                     ),
                                   ],
@@ -297,8 +301,8 @@ class SafeAreaPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get minExtent => kToolbarHeight;
 
   @override
-  bool shouldRebuild(SafeAreaPersistentHeaderDelegate old) {
-    if (old.child != child) {
+  bool shouldRebuild(SafeAreaPersistentHeaderDelegate oldDelegate) {
+    if (oldDelegate.child != child) {
       return true;
     }
     return false;

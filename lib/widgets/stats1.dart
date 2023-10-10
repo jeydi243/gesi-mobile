@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:gesi_mobile/constantes/values.dart';

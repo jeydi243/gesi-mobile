@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -22,8 +24,6 @@ class AuthController extends GetxController {
 
   var options = BaseOptions(
     baseUrl: 'http://localhost:3000',
-    connectTimeout: 5000,
-    receiveTimeout: 3000,
   );
 
   @override

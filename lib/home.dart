@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, unused_field
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gesi_mobile/constantes/values.dart';
@@ -6,7 +8,6 @@ import 'package:gesi_mobile/screens/courses/courses.dart';
 import 'package:gesi_mobile/screens/profile.dart';
 import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'controllers/appController.dart';
 import 'screens/dashboard.dart';
 

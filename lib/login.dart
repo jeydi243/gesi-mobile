@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:gesi_mobile/controllers/authController.dart';
 import 'package:get/get.dart';
@@ -199,7 +201,7 @@ class _gesiState extends State<gesi> {
                             'By selecting Agree and Continue below, I agree to Terms of Service and Privacy Policy',
                             style: Theme.of(context)
                                 .textTheme
-                                .button
+                                .labelLarge
                                 ?.copyWith(color: Colors.white),
                           ),
                         ),
@@ -216,7 +218,7 @@ class _gesiState extends State<gesi> {
                             "Agree and Continue",
                             style: Theme.of(context)
                                 .textTheme
-                                .button
+                                .labelLarge
                                 ?.copyWith(color: Colors.white),
                           ),
                         )
