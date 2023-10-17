@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Meeting {
-  Meeting(
+class Event {
+  Event(
       {required this.from,
       required this.to,
       this.id,
@@ -23,4 +23,5 @@ class Meeting {
   String? toZone;
   String? recurrenceRule;
   List<DateTime>? exceptionDates;
+
 }

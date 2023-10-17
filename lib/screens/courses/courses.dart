@@ -11,6 +11,6 @@ class Courses extends StatefulWidget {
 class _CoursesState extends State<Courses> {
   @override
   Widget build(BuildContext context) {
-    return CourseList();
+    return SafeArea(child: CourseList());
   }
 }

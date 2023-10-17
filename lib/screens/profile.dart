@@ -67,7 +67,7 @@ class _ProfileState extends State<Profile> {
                       },
                       child: CircleAvatar(
                         backgroundColor: Colors.teal[50],
-                        maxRadius: 40,
+                        maxRadius: 25,
                         child: Icon(MdiIcons.account, size: 30),
                       ),
                     ),

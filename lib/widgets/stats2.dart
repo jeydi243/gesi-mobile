@@ -34,7 +34,7 @@ class Stats2State extends State<Stats2> {
       child: Stack(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.start,

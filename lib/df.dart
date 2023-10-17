@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gesi_mobile/models/meeting.dart';
+import 'package:gesi_mobile/models/event.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-class MeetingDataSource extends CalendarDataSource<Meeting> {
-  MeetingDataSource(List<Meeting> meetings) {
+class MeetingDataSource extends CalendarDataSource<Event> {
+  MeetingDataSource(List<Event> meetings) {
     appointments = meetings;
   }
 
@@ -53,9 +53,9 @@ class MeetingDataSource extends CalendarDataSource<Meeting> {
   }
 
   @override
-  Meeting? convertAppointmentToObject(
-      Meeting? customData, Appointment appointment) {
-    return Meeting(
+  Event? convertAppointmentToObject(
+      Event? customData, Appointment appointment) {
+    return Event(
         from: appointment.startTime,
         to: appointment.endTime,
         eventName: appointment.subject,

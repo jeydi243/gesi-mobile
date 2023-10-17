@@ -28,7 +28,8 @@ class _CourseListState extends State<CourseList> {
         itemBuilder: (context, index) {
           return OpenContainer(
             transitionDuration: .900.seconds,
-            // transitionType: ContainerTransitionType.fadeThrough,
+            middleColor: Get.theme.scaffoldBackgroundColor,
+            closedColor: Get.theme.scaffoldBackgroundColor,
             closedBuilder: (BuildContext context, void Function() action) {
               return Container(
                 color: AppColors.backgroundDark,
