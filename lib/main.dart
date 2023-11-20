@@ -4,8 +4,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:gesi_mobile/constantes/values.dart';
 import 'package:gesi_mobile/controllers/appController.dart';
 import 'package:gesi_mobile/controllers/authController.dart';
-import 'package:gesi_mobile/login.dart';
 import 'package:gesi_mobile/screens/updateprofile.dart';
+import 'package:gesi_mobile/screens/user/login.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

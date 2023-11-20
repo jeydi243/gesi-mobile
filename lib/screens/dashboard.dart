@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gesi_mobile/controllers/appController.dart';
 import 'package:gesi_mobile/widgets/stats2.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +13,7 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
+    AppController apc = Get.find();
     return SafeArea(
       child: Container(
         color: Get.theme.scaffoldBackgroundColor,
@@ -35,6 +37,12 @@ class _DashboardState extends State<Dashboard> {
               //     Text("email@email")
               //   ],
               // ),
+              ElevatedButton(
+                  onPressed: () async {
+                    await apc.getClasses();
+                  },
+                  child: Text('Get classes')),
+              Obx(() => Text("${apc.classes}")),
               Container(
                 height: Get.height * .3,
                 width: Get.width * .9,

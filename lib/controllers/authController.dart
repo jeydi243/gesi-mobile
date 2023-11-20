@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:gesi_mobile/authentication.dart';
+import 'package:gesi_mobile/screens/user/authentication.dart';
 import 'package:gesi_mobile/home.dart';
 import 'package:gesi_mobile/models/user.dart';
 import 'package:dio/dio.dart';

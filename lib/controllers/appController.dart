@@ -4,17 +4,21 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:gesi_mobile/constantes/values.dart';
+import 'package:gesi_mobile/models/classe.dart';
 import 'package:gesi_mobile/models/event.dart';
 import 'package:gesi_mobile/models/service.dart';
 import 'package:get/get.dart';
 import 'package:palette_generator/palette_generator.dart';
+// import 'package:dio/src/response.dart'
+import 'package:get/get_connect/http/src/response/response.dart'
+    as GetxResponse;
 
 class AppController extends GetxController {
   static AppController instance = Get.find();
   final options = BaseOptions(
     baseUrl: dotenv.env['BASE_URL'] ?? '',
     connectTimeout: Duration(seconds: 5),
-    receiveTimeout: Duration(seconds: 3),
+    receiveTimeout: Duration(seconds: 10),
   );
   late Dio dio;
   @override
@@ -23,6 +27,20 @@ class AppController extends GetxController {
     dio = Dio(options);
   }
 
+  // call api with dio
+  Future<List<Classe>?> getClasses() async {
+    try {
+      final response = await dio.get('/classes');
+      // final List<Classe> classes = (response.);kc
+      print('The response is ${response.data}');
+      // return (response.data as List).map((e) => Classe.fromJson(e)).toList();
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
+
+  late Rx<List<Classe>?> _classes = Rx<List<Classe>?>(null);
   RxBool isgesiWidgetDisplayed = true.obs;
   RxInt currentIndex = RxInt(0);
   Rx<Color?> appBarColor = Rx<Color?>(Colors.transparent);
@@ -48,6 +66,8 @@ class AppController extends GetxController {
       'selectedColor': AppColors.accent,
     },
   ].obs;
+
+  get classes => _classes.value;
 
   changeDIsplayedAuthWidget() {
     isgesiWidgetDisplayed.value = !isgesiWidgetDisplayed.value;
